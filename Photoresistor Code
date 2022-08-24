@@ -1,0 +1,25 @@
+int ledPin = 2;
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+  // reads the input on analog pin A0 (value between 0 and 1023)
+  int analogValue = analogRead(A0);
+
+  if (analogValue < 600) {
+    Serial.println("Dark");
+    Serial.println(analogValue);
+    digitalWrite(ledPin, HIGH);
+    delay(100);
+  } 
+  else {
+    Serial.println("Bright");
+    Serial.println(analogValue);
+    digitalWrite(ledPin, LOW);
+    delay(100);
+  }
+   delay(50);
+}
