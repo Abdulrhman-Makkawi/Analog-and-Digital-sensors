@@ -1,0 +1,29 @@
+const int TRIG = 6;
+const int ECHO = 7; 
+
+// variables will change:
+float duration_us, distance_cm;
+
+void setup() {
+  Serial.begin (9600);
+  pinMode(TRIG, OUTPUT);
+  pinMode(ECHO, INPUT); 
+}
+
+void loop() {
+  // generate 10-microsecond pulse to TRIG pin
+  digitalWrite(TRIG, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(TRIG, LOW);
+
+  // measure duration of pulse from ECHO pin
+  duration_us = pulseIn(ECHO, HIGH);
+  // calculate the distance
+  distance_cm = 0.017 * duration_us;
+
+  Serial.print("distance: ");
+  Serial.print(distance_cm);
+  Serial.println(" cm");
+
+  delay(500);
+}
